@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Input, Tooltip, Icon, Button } from 'antd';
 import axios from 'src/config/axios'
+import { Link } from 'react-router-dom';
 
 interface ISignUpState {
   account: string,
@@ -29,18 +30,20 @@ class SignUp extends React.Component<any, ISignUpState> {
   }
   submit = async () => {
     const { account, password, passwordConformation } = this.state;
-
     try {
       await axios.post('sign_up/user', {
         account,
         password,
         password_confirmation: passwordConformation
       }).then(() => {
-        console.log(123);
+        console.log('sign up success');
       })
     } catch (e) {
       throw new Error(e)
     }
+  }
+  linkTo = () => {
+    this.props.history.push('/login')
   }
 
   public render() {
@@ -65,6 +68,7 @@ class SignUp extends React.Component<any, ISignUpState> {
           onChange={this.onChangePasswordConformation}
         />
         <Button onClick={this.submit}>注册</Button>
+        <Link to="/login">去登录</Link>
       </div>
     )
   }
