@@ -8,9 +8,11 @@
         ]
     },
     "rules": {
+        "only-arrow-functions": false,
         "ordered-imports": false,
         "jsx-no-lambda": false,
         "member-access": false,
-        "no-console": false
+        "no-console": false,
+        "no-string-literal": false
     }
 }
