@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Input, Tooltip, Icon, Button } from 'antd';
 import axios from 'src/config/axios'
 import { Link } from 'react-router-dom';
+import './SignUp.scss'
 
 interface ISignUpState {
   account: string,
@@ -49,7 +50,8 @@ class SignUp extends React.Component<any, ISignUpState> {
   public render() {
     const { account, password, passwordConformation } = this.state;
     return (
-      <div className="signup">
+      <div className="signup" id="signup">
+        <h1>注册</h1>
         <Input
           placeholder="输入用户名"
           value={account}
@@ -67,8 +69,8 @@ class SignUp extends React.Component<any, ISignUpState> {
         <Input.Password placeholder="重复密码" value={passwordConformation}
           onChange={this.onChangePasswordConformation}
         />
-        <Button onClick={this.submit}>注册</Button>
-        <Link to="/login">去登录</Link>
+        <Button className="registerButton" type="primary" onClick={this.submit}>注册</Button>
+        <p>如果您已经有账号，<Link to="/login">去登录</Link></p>
       </div>
     )
   }
