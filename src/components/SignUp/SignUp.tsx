@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input, Tooltip, Icon, Button } from 'antd';
+import { Input, Icon, Button } from 'antd';
 import axios from 'src/config/axios'
 import { Link } from 'react-router-dom';
 import './SignUp.scss'
@@ -20,6 +20,11 @@ class SignUp extends React.Component<any, ISignUpState> {
     }
   }
 
+  onChange = (key: keyof ISignUpState, value: string) => {
+    const newState = {}
+    newState[key] = value;
+    this.setState(newState)
+  }
   onChangeAccount = (e: any) => {
     this.setState({ account: e.target.value })
   }
@@ -36,15 +41,11 @@ class SignUp extends React.Component<any, ISignUpState> {
         account,
         password,
         password_confirmation: passwordConformation
-      }).then(() => {
-        console.log('sign up success');
       })
+      this.props.history.push('/')
     } catch (e) {
       throw new Error(e)
     }
-  }
-  linkTo = () => {
-    this.props.history.push('/login')
   }
 
   public render() {
@@ -55,21 +56,17 @@ class SignUp extends React.Component<any, ISignUpState> {
         <Input
           placeholder="输入用户名"
           value={account}
-          onChange={this.onChangeAccount}
+          onChange={(e) => this.onChange('account', e.target.value)}
           prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-          suffix={
-            <Tooltip title="Extra information">
-              <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
-            </Tooltip>
-          }
+
         />
         <Input.Password placeholder="输入密码" value={password}
-          onChange={this.onChangePassword}
+          onChange={(e) => this.onChange('password', e.target.value)}
         />
         <Input.Password placeholder="重复密码" value={passwordConformation}
-          onChange={this.onChangePasswordConformation}
+          onChange={(e) => this.onChange('passwordConformation', e.target.value)}
         />
-        <Button className="registerButton" type="primary" onClick={this.submit}>注册</Button>
+        <Button className="signUpButton" type="primary" onClick={this.submit}>注册</Button>
         <p>如果您已经有账号，<Link to="/login">去登录</Link></p>
       </div>
     )
