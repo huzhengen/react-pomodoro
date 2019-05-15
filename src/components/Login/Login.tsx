@@ -19,8 +19,10 @@ class Login extends React.Component<any, ILoginState> {
   }
 
   onChange = (key: keyof ILoginState, value: string) => {
+    console.log(value)
+    console.log(this.state)
     const newState = {}
-    newState['key'] = value;
+    newState[key] = value;
     this.setState(newState)
   }
 
@@ -28,7 +30,7 @@ class Login extends React.Component<any, ILoginState> {
   submit = async () => {
     const { account, password } = this.state;
     try {
-      await axios.post('login/user', {
+      await axios.post('sign_in/user', {
         account,
         password,
       })

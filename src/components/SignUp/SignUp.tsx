@@ -22,7 +22,7 @@ class SignUp extends React.Component<any, ISignUpState> {
 
   onChange = (key: keyof ISignUpState, value: string) => {
     const newState = {}
-    newState['key'] = value;
+    newState[key] = value;
     this.setState(newState)
   }
   onChangeAccount = (e: any) => {
@@ -37,7 +37,7 @@ class SignUp extends React.Component<any, ISignUpState> {
   submit = async () => {
     const { account, password, passwordConformation } = this.state;
     try {
-      await axios.post('sign_in/user', {
+      await axios.post('sign_up/user', {
         account,
         password,
         password_confirmation: passwordConformation
