@@ -23,15 +23,8 @@ class Index extends React.Component<IRouter, IIndexState> {
     await this.getMe()
   }
   getMe = async () => {
-    try {
-      const response = await axios.get('me')
-      this.setState({ user: response.data })
-    } catch (e) {
-      console.log('获取用户失败');
-      if (e.response.status === 401) {
-        this.props.history.push('/login')
-      }
-    }
+    const response = await axios.get('me')
+    this.setState({ user: response.data })
   }
   logout = () => {
     localStorage.setItem('x-token', '')
