@@ -40,6 +40,12 @@ class Login extends React.Component<any, ILoginState> {
     }
   }
 
+  onKeyUp = (e: any) => {
+    if (e.keyCode === 13 && this.state.account !== '' && this.state.password !== '') {
+      this.submit()
+    }
+  }
+
 
   public render() {
     const { account, password } = this.state;
@@ -54,6 +60,7 @@ class Login extends React.Component<any, ILoginState> {
         />
         <Input.Password placeholder="输入密码" value={password}
           onChange={(e) => this.onChange('password', e.target.value)}
+          onKeyUp={this.onKeyUp}
         />
         <Button className="loginButton" type="primary" onClick={this.submit}>登录</Button>
         <p>如果您还没有账号，<Link to="/signUp">去注册</Link></p>
