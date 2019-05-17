@@ -1,13 +1,16 @@
 #index {
-    max-width: 1000px;
     >header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #ddd;
         padding: 16px;
+        span {
+            cursor: pointer;
+        }
     }
-    span {
-        cursor: pointer;
+    >main {
+        max-width: 1000px;
+        margin: 0 auto;
     }
 }
